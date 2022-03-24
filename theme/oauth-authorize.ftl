@@ -73,7 +73,6 @@
         [@helpers.prInput type="text" fieldName="loginId" autocomplete="username" placeholder=theme.message('loginId') autofocus=true required=true disabled=(showPasswordField && hasDomainBasedIdentityProviders) /]
         [#if showPasswordField]
           [@helpers.prInput type="password" fieldName="password" autocomplete="current-password" autofocus=loginId?has_content placeholder=theme.message('password') /]
-          <!-- [@helpers.captchaBadge showCaptcha=showCaptcha captchaMethod=tenant.captchaConfiguration.captchaMethod siteKey=tenant.captchaConfiguration.siteKey/] -->
         [/#if]
 
         <div class="form-check">
