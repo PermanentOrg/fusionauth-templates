@@ -29,7 +29,7 @@
 
 <!doctype html>
 <html lang="en">
-    [@helpers.permHeadTag title="Reset Password"]
+    [@helpers.permHeadTag title=theme.message('login')]
       <script src="/js/jstz-min-1.0.6.js"></script>
       [@helpers.captchaScripts showCaptcha=showCaptcha captchaMethod=tenant.captchaConfiguration.captchaMethod siteKey=tenant.captchaConfiguration.siteKey/]
       <script src="/js/oauth2/Authorize.js?version=${version}"></script>
@@ -56,14 +56,13 @@
         [#else]
           ${theme.message('pending-link-login-to-complete', pendingIdPLink.identityProviderName)}
         [/#if]
-        [#-- A pending link can be cancled. If we also have a device link in progress, this cannot be canceled. --]
         [#if pendingIdPLink??]
           [@helpers.link url="" extraParameters="&cancelPendingIdpLink=true"]${theme.message('login-cancel-link')}[/@helpers.link]
         [/#if]
         </p>
       [/#if]
       <form action="${request.contextPath}/oauth2/authorize" method="POST" class="full">
-        <h1 class="form-title">Authorize Application</h1>
+        <h1 class="form-title">${theme.message('login')}</h1>
         [@helpers.oauthHiddenFields/]
         [@helpers.hidden name="showPasswordField"/]
         [#if showPasswordField && hasDomainBasedIdentityProviders]

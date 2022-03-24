@@ -15,7 +15,7 @@
 
 <!doctype html>
 <html lang="en">
-  [@helpers.permHeadTag title="Reset Password"]
+  [@helpers.permHeadTag title=theme.message('two-factor-challenge')]
     [#-- Custom <head> code goes here --]
     <script src="${request.contextPath}/js/oauth2/TwoFactor.js?version=${version}"></script>
     <script>
@@ -29,7 +29,7 @@
 
 
     <main>
-      <h1 class="form-title">Authentication challenge</h1>
+      <h1 class="form-title">${theme.message('two-factor-challenge')}</h1>
 
       [#setting url_escaping_charset='UTF-8']
       <form id="2fa-form" action="two-factor" method="POST" class="full">
