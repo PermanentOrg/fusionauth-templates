@@ -1094,9 +1094,26 @@
   ${theme.stylesheet()?no_esc}
   </style>
   [/#if]
+  [#nested /]
 </head>
 [/#macro]
 
 [#macro prInput type="text" fieldName="" placeholder="" autocapitalize="none" autocomplete="on" autocorrect="off" autofocus=false spellcheck="false" disabled=false required=false]
-  <input type="${type}" class="form-control" id="${fieldName}" name="${fieldName}"  autocapitalize="${autocapitalize}" autocomplete="${autocomplete}" autocorrect="${autocorrect}" spellcheck="${spellcheck}" [#if autofocus]autofocus="autofocus"[/#if] placeholder="${placeholder}" [#if disabled]disabled="disabled"[/#if] />
+  [#if !value?has_content]
+    [#local value=("((" + fieldName + ")!'')")?eval?string/]
+  [/#if]
+  <input type="${type}" class="form-control" id="${fieldName}" name="${fieldName}"  autocapitalize="${autocapitalize}" autocomplete="${autocomplete}" autocorrect="${autocorrect}" spellcheck="${spellcheck}" [#if autofocus]autofocus="autofocus"[/#if] placeholder="${placeholder}" [#if disabled]disabled="disabled"[/#if] value="${value}" />
+[/#macro]
+
+[#macro prCheckbox fieldName="" label="" value="" uncheckedValue="" checked=false]
+<label>
+  [#local actualValue = ("((" + fieldName + ")!'')")?eval/]
+  [#local checked = actualValue?is_boolean?then(actualValue == value?boolean, actualValue == value)/]
+  [#if uncheckedValue?has_content]
+  <input type="hidden" name="__cb_${fieldName}" value="${uncheckedValue}"/>
+  [/#if]
+  <input type="checkbox" class="form-check-input" name=${fieldName} value="${value}" [#if checked]checked=checked[/#if]/>
+  &nbsp; ${label?has_content?then(label, theme.message(fieldName))}
+  [#nested/]
+</label>
 [/#macro]
