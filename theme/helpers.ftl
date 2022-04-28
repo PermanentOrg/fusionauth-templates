@@ -1062,13 +1062,18 @@
   [/#if]
 [/#macro]
 
-[#macro permHeader]
+[#macro permHeader showAdminLock=false]
   <header>
     <div class="perm-banner">
       <div class="banner-content">
         <a href="${PERM_DOMAIN}">
           <img class="banner-logo" src="${PERM_DOMAIN}/app/assets/img/logo/sideways_logo.png">
         </a>
+        [#if showAdminLock]
+          <a href="/admin/" title="Administrative Login">
+            <i class="fa fa-lock" style="font-size: 18px; color: #fff; opacity: 0.5;"></i>
+          </a>
+        [/#if]
       </div>
     </div>
   </header>
@@ -1089,6 +1094,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/font-awesome-4.7.0.min.css"/>
   [#if !(bypassTheme!false)]
   <style tyle="text/css">
   ${theme.stylesheet()?no_esc}
