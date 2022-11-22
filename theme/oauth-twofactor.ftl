@@ -32,7 +32,7 @@
       <h1 class="form-title">${theme.message('two-factor-challenge')}</h1>
 
       [#setting url_escaping_charset='UTF-8']
-      <form id="2fa-form" action="two-factor" method="POST" class="full">
+      <form id="2fa-form" action="/oauth2/two-factor" method="POST" class="full">
         [@helpers.prInput type="text" fieldName="code" autocapitalize="none" autocomplete="one-time-code" autocorrect="off" autofocus=true placeholder=theme.message('code')/]
 
         [@helpers.oauthHiddenFields/]
